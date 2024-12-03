@@ -58,6 +58,7 @@ interface DataProviderProps {
 
 export const DataContext = createContext<DataContextType | undefined>(undefined);
 
+
 export const DataProvider: FC<DataProviderProps> = ({ children }) => {
   const router = useRouter();
 
@@ -120,8 +121,9 @@ export const DataProvider: FC<DataProviderProps> = ({ children }) => {
   
     // Shuffle and select questions
     const shuffledQuestions = selectedSubjects
-      .map((ques) => ({
+      .map((ques, index) => ({
         ...ques,
+        _id: index + 1, 
         visited: false,
         attempted: false,
         userOption: -1,

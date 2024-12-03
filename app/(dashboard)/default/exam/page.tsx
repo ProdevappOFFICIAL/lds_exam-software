@@ -399,16 +399,17 @@ const ExamPage = () => {
             <div className=" underline my-2">Solution</div> 
             
             <CardDescription className="select-none pointer-events-none my-2">{questions[currentQuestion]?.question}</CardDescription>
-          
-             {questions[currentQuestion]?.img?(<div>  <Image
+            {questions[currentQuestion]?.img?(<div>  <img
          className="select-none pointer-events-none"
        src={questions[currentQuestion]?.img} // Fallback image URL
     alt={``}
      width={100}
     height={100}
-    layout="responsive"
+   
     style={{ width: '100%', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
   /></div>):(<div></div>)}
+
+
             </CardDescription>
           </CardHeader>
 
@@ -466,13 +467,13 @@ const ExamPage = () => {
             
             <div className="w-full" />
             <div className="w-[700px] mr-4">
-              {questions[currentQuestion]?.img?(<div>  <Image
+              {questions[currentQuestion]?.img?(<div>  <img
          className="select-none pointer-events-none"
        src={questions[currentQuestion]?.img} // Fallback image URL
     alt={``}
      width={100}
     height={100}
-    layout="responsive"
+  
     style={{ width: '100%', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
   /></div>):(<div></div>)}
 
