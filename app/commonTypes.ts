@@ -11,6 +11,6 @@ export interface Question {
  question: string;
  correct_answer: string;
  incorrect_answers: string[];
- text_explanation: string;
- video_explanation: string;
+ text_explanation?: string; // Optional
+  video_explanation?: string; // Optional
 }

@@ -58,7 +58,7 @@ export default function Calculator() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [expression]);
+  }, [expression, handleKeyDown]);
 
   return (
     <div className='flex flex-col'>

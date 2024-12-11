@@ -118,7 +118,7 @@ const ExamPage = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [questions, currentQuestion, setSelectedOption, markVisited, saveAndNextFunction]);
+  }, [questions, currentQuestion, setSelectedOption, markVisited, saveAndNextFunction, setCurrentQuestion]);
   
 
   
@@ -181,7 +181,7 @@ const ExamPage = () => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isActive, minutes, saveAndSubmit]); // Add dependencies
+  }, [isActive, minutes, saveAndSubmit, seconds]); // Add dependencies
   
   
 

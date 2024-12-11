@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Video {
   id: string;
@@ -57,10 +58,12 @@ const App: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {videos.map((video) => (
           <div key={video.id} className="border p-2 rounded shadow">
-            <img
+            <Image
               src={video.thumbnail}
               alt={video.title}
               className="w-full h-40 object-cover"
+              width={100}
+              height={100}
             />
             <h3 className="mt-2 text-sm font-semibold">{video.title}</h3>
             <a

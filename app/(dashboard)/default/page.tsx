@@ -35,7 +35,6 @@ import { useRouter } from "next/navigation";
 import { useData } from "@/app/db/DataProvider";
 import toast, { Toaster } from 'react-hot-toast';
 import Image from "next/image";
-import Carousel from "@/components/ui/carousel";
 
 const Dashboard = () => {
   const { setTheme } = useTheme();
@@ -294,7 +293,7 @@ const Dashboard = () => {
    
       <div className="flex  flex-col gap-x-4  lg:justify-between mx-7">
     
-     <Carousel/>
+     
 
       <div className="h-5"/>
         <Dialog  open={isDialogOpen} onOpenChange={setIsDialogOpen}>
