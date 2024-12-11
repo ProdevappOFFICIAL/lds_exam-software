@@ -27,7 +27,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { CalculatorIcon, ChevronLeft, ChevronRight, Timer, Youtube } from "lucide-react";
+import { Bug, CalculatorIcon, ChevronLeft, ChevronRight, Download, Timer, Upload, Youtube } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Calculator from "../../_component/plugin.components/calculator";
 import { useEffect, useState } from "react";
@@ -372,13 +372,55 @@ const ExamPage = () => {
               </div>
                 <div className="flex w-full items-center justify-end font-light text-sm  ">
                   <div className="flex space-x-3 mt-2">
+                
+
+                  <Dialog>
+          <DialogTrigger asChild>
+          <Button variant={'outline'} className="flex items-center hover:bg-red-600 hover:text-white">
+                 <Bug className="mr-2 " width={14} height={14}/> Report an issue
+                </Button>
+          </DialogTrigger>
+          <DialogContent className="w-fit items-center  min-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Report an issue</DialogTitle>
+              <DialogDescription>
+                <div className="flex flex-col space-y-4 mt-2">
+                <div className="flex items-center justify-between">  Issue Type  <select> 
+                  <option> Question Issue </option>
+                  <option> UI Issue </option>
+                  </select>
+
+                  
+                  </div>
+                  <div className="flex items-center justify-between">  
+                    Description: <textarea className="ml-10 border rounded-md px-2 h-10"/>
+                  </div>
+                
+                  <div className="flex items-center justify-between">  
+                    Add Screenshot: 
+                    <div className=" relative">
+<Input type="file" className="ml-10 hidden"/>
+<Upload/>
+                    </div>
+                  </div>
+               
+                </div>
+               
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
+      
+
+
               <Button variant={'outline'} className="items-center">
                   Subject :  {questions[currentQuestion]?.category}
                 </Button>
                 <Dialog>
           <DialogTrigger asChild>
-                    <Button  variant={'outline'} className="items-center">
-                  Explanation <Youtube className="ml-2" width={14} height={14}/>
+                    <Button  variant={'outline'} className="flex items-center hover:bg-green-600 hover:text-white">
+                 <Youtube className="mr-2" width={14} height={14}/> Explanation 
                 </Button>
           </DialogTrigger>
           <DialogContent className="flex rounded-xl w-fit">
@@ -392,13 +434,13 @@ const ExamPage = () => {
         <TabsTrigger value="video">Video Explanation</TabsTrigger>
       </TabsList>
       <TabsContent value="text">
-        <Card className=" m-2 mt-2">
+        <Card className=" m-2 mt-2 max-h-[500px] overflow-y-auto">
           <CardHeader>
            
             <CardDescription className="">
             <div className=" underline my-2">Solution</div> 
             
-            <CardDescription className="select-none pointer-events-none my-2">{questions[currentQuestion]?.question}</CardDescription>
+          
             {questions[currentQuestion]?.img?(<div>  <img
          className="select-none pointer-events-none"
        src={questions[currentQuestion]?.img} // Fallback image URL
@@ -409,10 +451,19 @@ const ExamPage = () => {
     style={{ width: '100%', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
   /></div>):(<div></div>)}
 
+  
 
             </CardDescription>
+            <CardDescription className="select-none pointer-events-none my-2">
+            <div
+        dangerouslySetInnerHTML={{
+          __html: questions[currentQuestion]?.text_explanation || "",
+        }}
+      ></div>
+      <div className="my-2 px-2 py-1 bg-green-300 rounded-md text-black border " >Answer: {questions[currentQuestion]?.correct_answer}</div>
+      </CardDescription>
           </CardHeader>
-
+        
          
         </Card>
       </TabsContent>
@@ -420,7 +471,7 @@ const ExamPage = () => {
         <Card>
           <CardHeader>
             <CardDescription>
-             Video Explanation
+            <iframe src={questions[currentQuestion]?.video_explanation} className=" rounded-md"/>
             </CardDescription>
           </CardHeader>
         </Card>
@@ -441,7 +492,12 @@ const ExamPage = () => {
              
             </CardTitle>
             <div className="h-1" />
-            <CardDescription className="select-none pointer-events-none">{questions[currentQuestion]?.question}</CardDescription>
+            <CardDescription className="select-none pointer-events-none">
+            <div
+        dangerouslySetInnerHTML={{
+          __html: questions[currentQuestion]?.question || "",
+        }}></div>
+              </CardDescription>
           </CardHeader>
           <div className="flex flex-row ">
             <CardContent className="flex flex-col ">

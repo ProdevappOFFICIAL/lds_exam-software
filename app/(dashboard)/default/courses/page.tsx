@@ -4,7 +4,7 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useData } from '@/app/db/DataProvider';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
-import { BellRing, BookOpenTextIcon, Check } from 'lucide-react';
+import { BellRing, BookOpenTextIcon, Check, Link2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -128,6 +128,7 @@ const Coursepage: React.FC = () => {
                       <div className="p-5 py-3 rounded-sm">
                         <h3>{question._id}. {highlightText(question.question, searchTerm)}</h3>
                       </div>
+                     
                     </div>
                     <div className='flex items-center w-2/12'>
                     <Dialog>
@@ -190,14 +191,28 @@ const Coursepage: React.FC = () => {
                             </p>
                           </span>
                         )}
+
+                        
                       </div>
                     ))}
                   </p>
+                  <div className='flex flex-col px-2 py-1 w-full h-full'>
+                    <p className=' underline'>Explanation</p>  
+                      <div className='px-5 py-1 bg-yellow-300/20 text-black rounded-md border'>
+                         {question.text_explanation}
+                      </div>
+
+                      <div className='flex w-full underline py-1'>Video Explanation   <a className='text-blue-600 ml-2 no-underline'  href={question.video_explanation}><Link2/></a></div>
+                     
+                      </div>
                 </div>
               ))
             ) : (
               <p className='p-3'>No questions available or select a year</p>
             )}
+          </div>
+          <div>
+          
           </div>
         </div>
       </div>

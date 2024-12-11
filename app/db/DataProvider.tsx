@@ -167,6 +167,8 @@ export const DataProvider: FC<DataProviderProps> = ({ children }) => {
         userOption: -1,
         options: options.sort(() => Math.random() - 0.5),
         img: ques.img,
+        text_explanation: ques.text_explanation,
+        video_explanation: ques.video_explanation,
         category: ques.category
       };
     });
@@ -184,6 +186,8 @@ export const DataProvider: FC<DataProviderProps> = ({ children }) => {
         correct_answer: data.correct_answer || "",
         incorrect_answers: data.incorrect_answers || [],
         img: data.img || "",
+        text_explanation: data.text_explanation || "",
+        video_explanation: data.video_explanation || "",
         _id: data._id || 0,
         visited: data.visited || false,
         attempted: data.attempted || false,
@@ -193,11 +197,11 @@ export const DataProvider: FC<DataProviderProps> = ({ children }) => {
     };
   
     const allQuestions: Question[] = [
-      ...Object.values(mathQuestions).flat().map(ensureQuestionType).slice(0, 10),
-      ...Object.values(englishQuestions).flat().map(ensureQuestionType).slice(0, 10),
-      ...Object.values(physicsQuestions).flat().map(ensureQuestionType).slice(0, 10),
-      ...Object.values(chemistryQuestions).flat().map(ensureQuestionType).slice(0, 10),
-      ...Object.values(biologyQuestions).flat().map(ensureQuestionType).slice(0, 10),
+      ...Object.values(mathQuestions).flat().map(ensureQuestionType).slice(0, 40),
+      ...Object.values(englishQuestions).flat().map(ensureQuestionType).slice(0, 40),
+      ...Object.values(physicsQuestions).flat().map(ensureQuestionType).slice(0, 40),
+      ...Object.values(chemistryQuestions).flat().map(ensureQuestionType).slice(0, 40),
+      ...Object.values(biologyQuestions).flat().map(ensureQuestionType).slice(0, 40),
     ];
   
     const selectedQuestions: Question[] = [];

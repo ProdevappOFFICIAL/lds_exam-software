@@ -22,10 +22,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Link2Icon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { Link2Icon, MoonIcon, QuestionMarkIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { BellRing, BookOpenIcon, Calculator, CalculatorIcon, FileJsonIcon, Loader2, LogOutIcon, Pen, Timer, X } from "lucide-react";
+import { BellRing, BookOpenIcon, Calculator, CalculatorIcon, Check, FileJsonIcon, Loader2, LogOutIcon, Pen, Timer, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import React, { useEffect, useState } from "react";
@@ -35,6 +35,7 @@ import { useRouter } from "next/navigation";
 import { useData } from "@/app/db/DataProvider";
 import toast, { Toaster } from 'react-hot-toast';
 import Image from "next/image";
+import Carousel from "@/components/ui/carousel";
 
 const Dashboard = () => {
   const { setTheme } = useTheme();
@@ -156,6 +157,9 @@ const Dashboard = () => {
     setphyno(phyno)
     setbiono(biono)
   }
+  const NaviTutorials = () => {
+    router.push('/default/tutorials')
+  }
   const handleStartMixedQuiz = () => {
     // setQuizTime(time);
     //setNumQuestions(numQuestions);
@@ -193,28 +197,18 @@ const Dashboard = () => {
       
       <Toaster/>
      
-      <div className="flex flex-row justify-between my-2 p-5">
-        <div className="w-[250px] px-5 text-xl font-semibold tracking-tight transition-colors first:mt-0  ">
+      <div className="flex flex-row items-center justify-between my-2 p-5">
+        <div className="flex">
+
+            <div className="flex px-5 text-xl font-semibold tracking-tight transition-colors  ">
           Welcome
         </div>
-        <div>
-          <select
-            className={cn(
-              "flex h-10 w-[100px] sm:w-fit items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
-            )}
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option className="rounded-tr-sm rounded-lr-sm text-[10px] mt-2" value="Math">Math</option>
-            <option className="rounded-tr-sm rounded-lr-sm text-[10px]" value="English">English</option>
-            <option className="rounded-tr-sm rounded-lr-sm text-[10px]" value="Physics">Physics</option>
-            <option className="rounded-tr-sm rounded-lr-sm text-[10px] " value="Chemistry">Chemistry</option>
-            <option className="rounded-tr-sm rounded-lr-sm text-[10px]" value="Biology">Biology</option>
-          </select>
+        <div className="flex px-2 py-1 rounded bg-yellow-400/20 border border-gray-300" >
+         Oyewale Prudence
         </div>
-
-        <div className="w-full"/>
+        </div>
       
+
 
         <div className="w-10"/>
         <div className="flex-row flex mr-2 sm:mr-10">
@@ -240,7 +234,15 @@ const Dashboard = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <div className="w-5 sm:w-10"></div>
+          
+          <div className="mx-5">
+          <div>
+                  <Button variant="outline" size="icon">
+                    <QuestionMarkIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <QuestionMarkIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  </Button>
+                </div>
+          </div>
 
           <div>
             <Dialog>
@@ -291,18 +293,9 @@ const Dashboard = () => {
         
    
       <div className="flex  flex-col gap-x-4  lg:justify-between mx-7">
-      <div className="flex flex-row w-full items-center justify-between px-5   bg-yellow-200/20  dark:bg-yellow-200/20 rounded-md border border-gray-300/30 py-4">
-          <BellRing className="dark:text-white w-6 h-6" width={9} height={9} />
-        
-          <div className="flex text-black   text-sm dark:text-white">
-            Welcome to LearningDeck
-          </div>
-        
-          <p className="flex  text-sm px-2 py-1 rounded-full bg-green-200/20 text-black">
-            v1.01
-          </p>
+    
+     <Carousel/>
 
-      </div>
       <div className="h-5"/>
         <Dialog  open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -404,23 +397,14 @@ const Dashboard = () => {
               </DialogHeader>
               </DialogContent>
               </Dialog>
-              </div>   
-     
-          
-          </DialogContent>
-        </Dialog>
-        <div className="h-5"/>
-        <Dialog  open={isDialogOpenn} onOpenChange={setIsDialogOpenn}>
+
+
+              <Dialog  open={isDialogOpenn} onOpenChange={setIsDialogOpenn}>
           <DialogTrigger asChild>
-          <Card className="h-28 w-full sm::w-[350px] bg-sky-200 dark:bg-sky-800 mr-5 sm:mr-0 hover:cursor-pointer">
-              <CardHeader>
-                <CardTitle>Custom Exam</CardTitle>
-                <CardDescription className="">
-                  Start a custom questions on every subject
-                </CardDescription>
-              </CardHeader>
-              <CardContent></CardContent>
-            </Card>
+          <div 
+    className="  flex items-center px-4  py-2 text-sm focus:border focus:border-gray-600 font-bold w-full shadow-md border rounded-md hover:bg-gray-400/20 dark:bg-gray-400/20 hover:cursor-pointer">
+    <Image src={'/exam.png'} width={60} height={60} alt="practice exam logo" className="mr-4" /> CUSTOM EXAM SIMULATOR
+    </div>
           </DialogTrigger>
           <DialogContent className=" flex flex-col ">
             <DialogHeader>
@@ -435,19 +419,23 @@ const Dashboard = () => {
 </div>
                 
                 <div className="flex flex-col bg-gray-300/20 border rounded overflow-y-auto max-h-[150px]">
+           
                 <Dialog>
-          <DialogTrigger asChild>
+                  <div className="flex px-3">
+                          <DialogTrigger asChild>
 
-             <div className="flex w-full justify-between px-3 border-b py-1 mt-2 my-1">
+             <div className="flex w-full justify-between  border-b py-1 mt-2 my-1">
                    <p> Maths</p>
-                   <input
-            type="checkbox"
-            checked={math}
-            onChange={() => setmath(!math)}
-          />
+                 
                   </div>
                  
           </DialogTrigger>
+            <input
+            type="checkbox"
+            checked={math}
+            onChange={() => setmath(!math)}
+          /></div>
+    
           <DialogContent className="rounded-xl sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Math</DialogTitle>
@@ -456,7 +444,7 @@ const Dashboard = () => {
                 <Input
                  value={mathnoo}
                   onChange={HandleChangeMath}
-                  type="number"
+                  type="text"
                   className="w-[70px] text-center"/>
               </DialogDescription>
             </DialogHeader>
@@ -468,21 +456,25 @@ const Dashboard = () => {
           </DialogContent>
         </Dialog>
 
-
+ 
+     
              
         <Dialog>
-          <DialogTrigger asChild>
+             <div className="flex px-3">
+                     <DialogTrigger asChild>
           
-          <div className="flex w-full justify-between border-b px-3 py-1 my-1">
+          <div className="flex w-full justify-between border-b py-1 my-1">
                    <p> English</p>
-                   <input
-            type="checkbox"
-            checked={eng}
-            onChange={() => seteng(!eng)}
-          />
+                  
                   </div>
                   
           </DialogTrigger>
+           <input
+            type="checkbox"
+            checked={eng}
+            onChange={() => seteng(!eng)}
+          /></div>
+   
           <DialogContent className="rounded-xl sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>English</DialogTitle>
@@ -501,19 +493,23 @@ const Dashboard = () => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-
+  
+       
         <Dialog>
-          <DialogTrigger asChild>
-          <div className="flex w-full justify-between border-b px-3 py-1 my-1">
+           <div className="flex px-3">   
+              <DialogTrigger asChild>
+          <div className="flex w-full justify-between border-b  py-1 my-1">
                    <p> Chemistry</p>
-                   <input
-            type="checkbox"
-            checked={chm}
-            onChange={() => setchm(!chm)}
-          />
+                  
                   
                   </div>
           </DialogTrigger>
+           <input
+            type="checkbox"
+            checked={chm}
+            onChange={() => setchm(!chm)}
+          /></div>
+     
           <DialogContent className="rounded-xl sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Chemistry</DialogTitle>
@@ -533,17 +529,23 @@ const Dashboard = () => {
           </DialogContent>
         </Dialog>
 
+     
+
         <Dialog>
-          <DialogTrigger asChild>
-          <div className="flex w-full justify-between border-b px-3 py-1 my-1">
+
+        <div className="flex px-3">  <DialogTrigger asChild>
+          <div className="flex w-full justify-between border-b  py-1 my-1">
                    <p> Physics</p>
-                   <input
+                
+                  </div>
+          </DialogTrigger>  
+           <input
             type="checkbox"
             checked={phy}
             onChange={() => setphy(!phy)}
-          />
-                  </div>
-          </DialogTrigger>
+          /></div>
+
+        
           <DialogContent className="rounded-xl sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Physics</DialogTitle>
@@ -563,17 +565,21 @@ const Dashboard = () => {
           </DialogContent>
         </Dialog>
         <Dialog>
-          <DialogTrigger asChild>
+          <div className="flex px-3">
+               <DialogTrigger asChild>
           
-          <div className="flex w-full justify-between px-3 py-1 my-1">
+          <div className="flex w-full justify-between  py-1 my-1">
                    <p> Biology</p>
-                   <input
+                  
+                  </div>
+          </DialogTrigger>
+           <input
             type="checkbox"
             checked={bio}
             onChange={() => setbio(!bio)}
           />
-                  </div>
-          </DialogTrigger>
+          </div>
+       
           <DialogContent className="rounded-xl sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Biology</DialogTitle>
@@ -596,33 +602,50 @@ const Dashboard = () => {
                 </div>
                 <div className="flex flex-col my-2 bg-gray-300/20 p-3 border rounded-md space-y-2">
                      <div className="flex justify-between items-center border  border-gray-400/20 rounded-md bg-gray-300/20 p-2">
-                        No of Math Questions
+                    
+                     <div className="flex items-center">
+                         No of Math Questions
+                          {math&&(<Check className="bg-green-600  rounded-full text-white p-[2px] ml-2 " width={15} height={15}/> )}
+                     </div>
+                     
                         <div className="  bg-gray-300/20 p-2  border border-gray-400 rounded-md">
                           {mathno}
                         </div>
                      </div>
 
                      <div className="flex justify-between items-center border  border-gray-400/20 rounded-md bg-gray-300/20 p-2">
-                        No of English Questions
+                     <div className="flex items-center">
+                         No of English Questions
+                          {eng&&(<Check className="bg-green-600  rounded-full text-white p-[2px] ml-2 " width={15} height={15}/> )}
+                     </div>
                         <div className="  bg-gray-300/20 p-2  border border-gray-400 rounded-md">
                           {engno}
                         </div>
                      </div>
                      <div className="flex justify-between items-center border  border-gray-400/20 rounded-md bg-gray-300/20 p-2">
-                        No of Chemistry Questions
+                     <div className="flex items-center">
+                         No of Chemistry Questions
+                          {chm&&(<Check className="bg-green-600  rounded-full text-white p-[2px] ml-2 " width={15} height={15}/> )}
+                     </div>
                         <div className="  bg-gray-300/20 p-2  border border-gray-400 rounded-md">
                           {chmno}
                         </div>
                      </div>
                      <div className="flex justify-between items-center border  border-gray-400/20 rounded-md bg-gray-300/20 p-2">
-                        No of Physics Questions
+                     <div className="flex items-center">
+                         No of Physics Questions
+                          {phy&&(<Check className="bg-green-600  rounded-full text-white p-[2px] ml-2 " width={15} height={15}/> )}
+                     </div>
                         <div className="  bg-gray-300/20 p-2  border border-gray-400 rounded-md">
                           {phyno}
                         </div>
                      </div>
                      <div className="flex justify-between items-center border  border-gray-400/20 rounded-md bg-gray-300/20 p-2">
-                        No of Biology Questions
-                        <div className="  bg-gray-300/20 p-2  border border-gray-400 rounded-md">
+                     <div className="flex items-center">
+                         No of Biology Questions
+                          {bio&&(<Check className="bg-green-600  rounded-full text-white p-[2px] ml-2 " width={15} height={15}/> )}
+                     </div>
+                     <div className="  bg-gray-300/20 p-2  border border-gray-400 rounded-md">
                           {biono}
                         </div>
                      </div>
@@ -648,55 +671,20 @@ const Dashboard = () => {
                 </label>
              
               </div>
+              <div className="flex px-3  border rounded-md py-1 mt-2 my-1 bg-gray-300/20 ">
+                         
+             <div className="flex w-full justify-between ">
+                   <p> Show Explanation</p>
+                 
+                  </div>
+                 
+      
+            <input
+            type="checkbox"
+          
+          /></div>
         
-    <div className="hidden">
-      <div>
-        <label>Math Questions: </label>
-        <input
-          type="number"
-          value={mathQuestionsCount}
-          onChange={(e) => setMathQuestionsCount(Number(e.target.value))}
-          min={0}
-        />
-      </div>
-      <div>
-        <label>English Questions: </label>
-        <input
-          type="number"
-          value={engQuestionsCount}
-          onChange={(e) => setEngQuestionsCount(Number(e.target.value))}
-          min={0}
-        />
-      </div>
-      <div>
-        <label>Chemistry Questions: </label>
-        <input
-          type="number"
-          value={chmQuestionsCount}
-          onChange={(e) => setChmQuestionsCount(Number(e.target.value))}
-          min={0}
-        />
-      </div>
-      <div>
-        <label>Physics Questions: </label>
-        <input
-          type="number"
-          value={phyQuestionsCount}
-          onChange={(e) => setPhyQuestionsCount(Number(e.target.value))}
-          min={0}
-        />
-      </div>
-      <div>
-        <label>Biology Questions: </label>
-        <input
-          type="number"
-          value={bioQuestionsCount}
-          onChange={(e) => setBioQuestionsCount(Number(e.target.value))}
-          min={0}
-        />
-      </div>
-   
-    </div>
+
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="sm:justify-end">
@@ -710,14 +698,19 @@ const Dashboard = () => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+              </div>   
+     
+          
+          </DialogContent>
+        </Dialog>
         <div className="h-5"/>
         <Dialog>
           <DialogTrigger asChild>
-            <Card className="h-28 w-full sm::w-[350px] bg-red-200 dark:bg-red-800 hover:cursor-pointer">
+            <Card className="h-28 w-full sm::w-[350px] bg-blue-200 dark:bg-blue-800 hover:cursor-pointer">
               <CardHeader>
-                <CardTitle>Exam link</CardTitle>
+                <CardTitle>Join a Classroom</CardTitle>
                 <CardDescription className="">
-                  Enter the Online URL for the Exam
+                  Connect with thousands of students
                 </CardDescription>
               </CardHeader>
               <CardContent></CardContent>
@@ -748,6 +741,17 @@ const Dashboard = () => {
             <DialogFooter className="sm:justify-start"></DialogFooter>
           </DialogContent>
         </Dialog>
+        <div className="h-5"/>
+      
+            <Card className="h-28 w-full sm::w-[350px] bg-red-200 dark:bg-red-800 hover:cursor-pointer" onClick={NaviTutorials}>
+              <CardHeader>
+                <CardTitle>Watch Tutorials</CardTitle>
+                <CardDescription className="">
+                  Watch video tutorials
+                </CardDescription>
+              </CardHeader>
+              <CardContent></CardContent>
+            </Card>      
       </div>
       <div className="h-5"></div>
       <div className="flex items-center justify-center"></div>

@@ -81,7 +81,10 @@ const Result = () => {
       <Button
         onClick={() => {
           router.push('/default');
-          Reset();
+          setTimeout(() => {
+              Reset();
+          }, 2000);
+        
         }}
       >
         Start New Quiz
