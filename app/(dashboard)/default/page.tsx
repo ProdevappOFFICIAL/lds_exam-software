@@ -336,6 +336,31 @@ const Dashboard = () => {
               <DialogDescription>
                      <div className=" flex flex-col space-y-4 py-4">
               
+        <div className="flex flex-row w-full justify-between items-center ">
+              <Label htmlFor="username" className="flex items-center text-right text-sm">
+                  <BookOpenIcon  className=" mr-1"/>
+                  Subject
+                </Label>
+                <label>
+                    <select
+
+            className={cn(
+              "flex h-10 w-[100px] sm:w-fit items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+            )}
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option className="rounded-tr-sm rounded-lr-sm bg-white text-black" value="Math">Math</option>
+            <option className="rounded-tr-sm rounded-lr-sm bg-white text-black" value="English">English</option>
+            <option className="rounded-tr-sm rounded-lr-sm bg-white text-black" value="Physics">Physics</option>
+            <option className="rounded-tr-sm rounded-lr-sm bg-white text-black" value="Chemistry">Chemistry</option>
+            <option className="rounded-tr-sm rounded-lr-sm bg-white text-black" value="Biology">Biology</option>
+          </select>
+                 
+                </label>
+
+
+              </div>
               <div className="flex flex-row w-full justify-between items-center ">
               <Label htmlFor="username" className="flex items-center text-right text-sm">
                   <BookOpenIcon  className=" mr-1"/>
